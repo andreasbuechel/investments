@@ -1,0 +1,80 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API for computing investment returns on different portfolios",
+    "version": "1.0.0",
+    "title": "Investment Portfolio API"
+  },
+  "host": "investments.ultimatebugpursuit.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "investment",
+      "description": "Investment Operations"
+    }
+  ],
+  "paths": {
+    "/compute-investment": {
+      "post": {
+        "tags": ["investment"],
+        "summary": "Compute returns of an investment",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Investment details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InvestmentInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/InvestmentOutput"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Portfolio not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "InvestmentInput": {
+      "type": "object",
+      "required": ["amount", "years", "portfolioName"],
+      "properties": {
+        "amount": {
+          "example": 42000
+        },
+        "years": {
+          "example": 5
+        },
+        "portfolioName": {
+          "type": "string",
+          "example": "balanced"
+        }
+      }
+    },
+    "InvestmentOutput": {
+      "type": "object",
+      "required": ["returns"],
+      "properties": {
+        "returns": {
+          "type": "number",
+          "example": 46043.19464631206
+        }
+      }
+    }
+  }
+}

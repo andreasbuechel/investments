@@ -1,0 +1,6 @@
+{
+  "name": "Conservative",
+  "interestRate": 3,
+  "anualPercentageFee": 1.1,
+  "fixedFee": 50
+}
